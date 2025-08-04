@@ -1,6 +1,6 @@
 import express from "express";
-import { createLog, getLogs } from "@/controllers/log.controller";
-import { authenticate } from "@/middleware/auth.middleware";
+import { createLog, getLogs } from "../controllers/log.controller";
+import { authenticate } from "../middleware/auth.middleware";
 
 const router = express.Router();
 

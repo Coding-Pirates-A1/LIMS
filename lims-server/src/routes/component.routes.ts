@@ -5,8 +5,8 @@ import {
   getComponentById,
   updateComponent,
   deleteComponent,
-} from "@/controllers/component.controller";
-import { authenticate } from "@/middleware/auth.middleware";
+} from "../controllers/component.controller";
+import { authenticate } from "../middleware/auth.middleware";
 
 const router = express.Router();
 

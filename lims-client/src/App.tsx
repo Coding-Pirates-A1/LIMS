@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { LoginForm } from "./components/auth/LoginForm";
+import { RegisterForm } from "./components/auth/RegisterForm";
 import { Header } from "./components/layout/Header";
 import { Sidebar } from "./components/layout/Sidebar";
 import { Dashboard } from "./components/dashboard/Dashboard";
@@ -13,6 +14,7 @@ const AppContent: React.FC = () => {
   const { user, isLoading } = useAuth();
   const [currentPage, setCurrentPage] = useState("dashboard");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [authView, setAuthView] = useState<"login" | "register">("login");
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page);
@@ -32,7 +34,11 @@ const AppContent: React.FC = () => {
   }
 
   if (!user) {
-    return <LoginForm />;
+    return authView === "login" ? (
+      <LoginForm onSwitchToRegister={() => setAuthView("register")} />
+    ) : (
+      <RegisterForm onSwitchToLogin={() => setAuthView("login")} />
+    );
   }
 
   const renderCurrentPage = () => {

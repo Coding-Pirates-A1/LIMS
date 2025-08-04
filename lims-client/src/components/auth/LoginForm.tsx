@@ -4,7 +4,11 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 
-export const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  onSwitchToRegister: () => void;
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({ onSwitchToRegister }) => {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -79,6 +83,19 @@ export const LoginForm: React.FC = () => {
             {isLoading ? "Signing In..." : "Sign In"}
           </Button>
         </form>
+
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Don't have an account?{" "}
+            <button
+              type="button"
+              onClick={onSwitchToRegister} // simple redirect
+              className="text-blue-600 hover:underline font-medium"
+            >
+              Sign Up
+            </button>
+          </p>
+        </div>
 
         <div className="mt-8 p-4 bg-gray-50 rounded-lg">
           <h3 className="font-medium text-gray-900 mb-2">Demo Credentials:</h3>

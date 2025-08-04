@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export type UserRole = "Admin" | "User";
+export type UserRole = "admin" | "user";
 
 export interface IUser extends Document {
   _id: mongoose.Types.ObjectId; // explicitly typed
@@ -15,7 +15,7 @@ const userSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   passwordHash: { type: String, required: true },
-  role: { type: String, enum: ["Admin", "User"], default: "User" },
+  role: { type: String, enum: ["admin", "user"], default: "user" },
   createdAt: { type: Date, default: Date.now },
 });
 

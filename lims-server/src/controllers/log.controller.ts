@@ -1,11 +1,11 @@
 // src/controllers/log.controller.ts
-import { Request, Response, NextFunction } from "express";
-import { Log } from "@/models/log.model";
-import Component from "@/models/component.model";
+import { Response, NextFunction } from "express";
+import { Log } from "../models/log.model";
+import Component from "../models/component.model";
 import { createError } from "../utils/error";
 
 export const createLog = async (
-  req: Request,
+  req: any,
   res: Response,
   next: NextFunction
 ) => {
@@ -44,11 +44,7 @@ export const createLog = async (
   }
 };
 
-export const getLogs = async (
-  _req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getLogs = async (_req: any, res: Response, next: NextFunction) => {
   try {
     const logs = await Log.find()
       .populate("component", "partNumber category")
